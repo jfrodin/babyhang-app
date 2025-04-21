@@ -1,55 +1,35 @@
 // screens/HomeScreen.tsx
 
-// Startsidan efter inloggning – översikt och nav
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
-import { colors, spacing } from "../styles/theme";
+import { colors } from "../styles/theme";
 
-// Hemskärm för inloggade användare
-export default function HomeScreen() {
+// Navigation prop
+export default function HomeScreen({ navigation }: any) {
   return (
     <View style={globalStyles.containerCenter}>
-      {/* Bebisikon – återanvänd från login */}
+      {/* Ikon */}
       <Image
         source={require("../assets/baby-icon.png")}
-        style={styles.babyIcon}
+        style={globalStyles.babyIcon}
         resizeMode="contain"
       />
 
-      {/* Välkomsttitel */}
+      {/* Titel */}
       <Text style={globalStyles.titleText}>Hej och välkommen till Babyhäng! 👶</Text>
 
-      {/* Underrubrik */}
-      <Text style={styles.subtitle}>Här kan du:</Text>
+      {/* Info */}
+      <Text style={{ color: colors.text, marginTop: 20, marginBottom: 10 }}>
+        Här kommer du kunna skapa och hitta event nära dig.
+      </Text>
 
-      {/* Lista med saker du kan göra */}
-      <Text style={styles.point}>• Skapa event</Text>
-      <Text style={styles.point}>• Se vad som händer nära dig</Text>
-      <Text style={styles.point}>• Hänga med andra småbarnsföräldrar</Text>
+      {/* Navigera till profilsida */}
+      <Pressable onPress={() => navigation.navigate("Profile")}>
+        <Text style={{ color: colors.heading, marginTop: 30 }}>
+          Gå till din profil
+        </Text>
+      </Pressable>
     </View>
   );
 }
-
-// Lokala specialstilar – endast om de inte finns globalt än
-const styles = StyleSheet.create({
-  babyIcon: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    marginBottom: spacing.md,
-    borderWidth: 2,
-    borderColor: colors.accent,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: colors.text,
-    marginBottom: spacing.sm,
-    marginTop: spacing.sm,
-  },
-  point: {
-    fontSize: 16,
-    color: colors.text,
-    marginBottom: 4,
-  },
-});

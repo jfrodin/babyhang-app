@@ -6,5 +6,6 @@ export type RootStackParamList = {
     Login: undefined;     // Login-skärm, inga parametrar
     Register: undefined;  // Register-skärm, inga parametrar
     Home: undefined;      // Huvudskärm efter inloggning
+    Profile: undefined; //profilsidan
   };
   
